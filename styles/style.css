@@ -1,6 +1,6 @@
 /* 
    GLOBAL THEME
- */
+*/
 
 :root {
     --primary: #283A2C;
@@ -17,17 +17,23 @@ body {
     background-color: var(--accent-light);
     color: var(--primary);
     line-height: 1.6;
+    transition: background-color 0.3s ease;
 }
 
 /* 
    HEADER
- */
+*/
 
 header {
     background-color: var(--primary);
     color: var(--white);
     padding: 0.75rem 1rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+}
+
+header:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .header-container {
@@ -40,11 +46,16 @@ header {
 
 /*
  Logo 
- */
+*/
 .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .logo img {
@@ -61,7 +72,7 @@ header {
 
 /*
  Desktop Navigation 
- */
+*/
 .top-nav {
     display: none;
     gap: 1.5rem;
@@ -71,21 +82,27 @@ header {
     color: var(--white);
     text-decoration: none;
     font-weight: 500;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .top-nav a:hover {
     opacity: 0.7;
+    transform: translateY(-2px);
 }
 
 /*
  Mobile Menu Button 
- */
+*/
 #menu-toggle {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.25rem;
+    transition: transform 0.3s ease;
+}
+
+#menu-toggle:hover {
+    transform: scale(1.1);
 }
 
 #menu-toggle img {
@@ -95,7 +112,7 @@ header {
 
 /*
  Mobile Navigation 
- */
+*/
 .mobile-nav {
     position: absolute;
     top: 70px;
@@ -105,6 +122,7 @@ header {
     padding: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .mobile-nav a {
@@ -113,6 +131,7 @@ header {
     padding: 0.5rem 0;
     text-decoration: none;
     font-weight: 500;
+    transition: opacity 0.2s ease;
 }
 
 .mobile-nav a:hover {
@@ -125,17 +144,17 @@ header {
 
 /* 
    HERO SECTION
- */
-
+*/
 .hero {
     background-color: var(--secondary);
     padding: 4rem 1rem;
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 /* 
    VACATION ADS
- */
+*/
 
 .vacation-ads {
     display: grid;
@@ -146,12 +165,18 @@ header {
 .ad-card {
     background: var(--white);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     animation: slideUp 0.6s ease-out;
     border-left: 6px solid var(--primary);
     max-width: 480px;
     margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ad-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .ad-card h3 {
@@ -176,6 +201,10 @@ header {
     margin-bottom: 0.3rem;
 }
 
+/*
+ SEARCH BAR
+*/
+
 .poi-search {
     padding: 2rem 1rem;
     text-align: center;
@@ -193,6 +222,12 @@ header {
     width: 250px;
     border-radius: 6px;
     border: 1px solid var(--primary);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.search-bar input:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(40, 58, 44, 0.4);
 }
 
 .search-bar button {
@@ -202,6 +237,12 @@ header {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.search-bar button:hover {
+    transform: scale(1.08);
+    background-color: #1f2f23;
 }
 
 #poi-results {
@@ -217,11 +258,16 @@ header {
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.poi-card:hover {
+    transform: translateY(-4px);
 }
 
 /* 
    FOOTER
- */
+*/
 
 footer {
     background-color: var(--primary);
@@ -230,6 +276,11 @@ footer {
     text-align: center;
     margin-top: 3rem;
     border-top: 4px solid var(--secondary);
+    transition: background-color 0.3s ease;
+}
+
+footer:hover {
+    background-color: #1f2f23;
 }
 
 footer .copywrite {
@@ -248,8 +299,7 @@ footer .modified {
 
 /* 
    ANIMATION Home Page
- */
-
+*/
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -276,18 +326,19 @@ footer .modified {
 
 /*
  FLEX WRAPPER FOR MAP + LIST 
- */
+*/
 #poi-container {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 600px;
     margin-top: 20px;
+    transition: opacity 0.3s ease;
 }
 
 /*
  SCROLLABLE LIST 
- */
+*/
 #poi-list {
     width: 300px;
     height: 100%;
@@ -295,16 +346,23 @@ footer .modified {
     padding: 10px;
     border-right: 2px solid #ccc;
     background: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+#poi-list:hover {
+    background-color: #f0f0f0;
 }
 
 .poi-item {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
 .poi-item:hover {
     background: #e8f4ff;
+    transform: translateX(4px);
 }
 
 .poi-item.active {
@@ -314,12 +372,21 @@ footer .modified {
 
 /*
  MAP TAKES REMAINING SPACE 
- */
+*/
 #map {
     flex: 1;
     height: 100%;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
 }
 
+#map:hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+/*
+ MODAL
+*/
 .modal {
     display: none;
     position: fixed;
@@ -327,6 +394,7 @@ footer .modified {
     background: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
+    animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
@@ -335,8 +403,13 @@ footer .modified {
     width: 90%;
     max-width: 500px;
     border-radius: 10px;
+    transform: scale(0.9);
+    animation: fadeIn 0.3s ease forwards;
 }
 
+/*
+ CURRENCY SECTION
+*/
 .currency-section {
     padding: 2rem 1rem;
     text-align: center;
@@ -355,6 +428,12 @@ footer .modified {
     padding: 0.6rem;
     border-radius: 6px;
     border: 1px solid var(--primary);
+    transition: transform 0.25s ease;
+}
+
+.currency-select select:focus,
+.currency-select button:hover {
+    transform: scale(1.05);
 }
 
 .currency-select button {
@@ -368,6 +447,13 @@ footer .modified {
     width: 200px;
     border-radius: 6px;
     border: 1px solid var(--primary);
+    transition: transform 0.25s ease;
+
+}
+
+#converter input:focus {
+    transform: scale(1.05);
+    
 }
 
 .result {

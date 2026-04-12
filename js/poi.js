@@ -1,14 +1,55 @@
-// Import POI function + API key
+// Import POI function + API key + utils
 import { getPOIs } from "./geoapify.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+
 const GEOAPIFY_KEY = "b255022c09f24ddc86a3f9319fe279fd";
 
 let map;
 let markerLayer;
-let markerMap = new Map(); // NEW: link POIs to markers
+let markerMap = new Map(); 
 
+// Local Storage: Recent Searches
+function saveRecentSearch(query) {
+  let searches = getLocalStorage("recent-searches") || [];
+
+ 
+  searches = searches.filter(item => item.toLowerCase() !== query.toLowerCase());
+
+ 
+  searches.unshift(query);
+
+ 
+  searches = searches.slice(0, 5);
+
+  setLocalStorage("recent-searches", searches);
+  renderRecentSearches();
+}
+
+function loadRecentSearches() {
+  return getLocalStorage("recent-searches") || [];
+}
+
+function renderRecentSearches() {
+  const container = document.getElementById("recent-searches");
+  if (!container) return;
+
+  const searches = loadRecentSearches();
+  container.innerHTML = "";
+
+  searches.forEach(search => {
+    const btn = document.createElement("button");
+    btn.textContent = search;
+
+    btn.addEventListener("click", () => {
+      document.getElementById("location-input").value = search;
+      handleSearch();
+    });
+
+    container.appendChild(btn);
+  });
+}
 
 // Convert location name to coordinates
-
 async function geocodeLocation(locationName) {
   const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
     locationName
@@ -25,7 +66,6 @@ async function geocodeLocation(locationName) {
 }
 
 // Initialize the map
-
 function initMap(lat, lon) {
   delete L.Icon.Default.prototype._getIconUrl;
 
@@ -56,7 +96,7 @@ function renderPOIsOnMap(pois) {
   markerMap.clear();
 
   const listContainer = document.getElementById("poi-list");
-  listContainer.innerHTML = ""; // clear sidebar
+  listContainer.innerHTML = "";
 
   pois.forEach((poi, index) => {
     const [lon, lat] = poi.geometry.coordinates;
@@ -66,17 +106,17 @@ function renderPOIsOnMap(pois) {
       return;
     }
 
-    
+    // Create marker
     const marker = L.marker([lat, lon]).addTo(markerLayer);
     markerMap.set(index, marker);
 
-   
+    // Marker click → highlight list + open modal
     marker.on("click", () => {
       highlightListItem(index);
       openPOIModal(poi);
     });
 
-   
+    // Sidebar item
     const item = document.createElement("div");
     item.className = "poi-item";
     item.innerHTML = `
@@ -85,7 +125,7 @@ function renderPOIsOnMap(pois) {
       <p>${poi.properties.address_line1 || ""}</p>
     `;
 
-    
+    // List click → zoom + trigger marker click
     item.addEventListener("click", () => {
       map.setView([lat, lon], 16);
       marker.fire("click");
@@ -98,7 +138,7 @@ function renderPOIsOnMap(pois) {
 // Highlight selected list item
 function highlightListItem(index) {
   const items = document.querySelectorAll(".poi-item");
-  items.forEach((el) => el.classList.remove("active"));
+  items.forEach(el => el.classList.remove("active"));
   items[index]?.classList.add("active");
 }
 
@@ -133,6 +173,9 @@ async function handleSearch() {
 
   if (!query) return alert("Please enter a location");
 
+  
+  saveRecentSearch(query);
+
   try {
     const { lat, lon } = await geocodeLocation(query);
     const pois = await getPOIs(lat, lon);
@@ -144,7 +187,7 @@ async function handleSearch() {
   }
 }
 
-// Attach event listener
+// Event Listeners
 document.getElementById("search-btn").addEventListener("click", handleSearch);
 
 document.getElementById("location-input").addEventListener("keypress", (event) => {
@@ -153,3 +196,6 @@ document.getElementById("location-input").addEventListener("keypress", (event) =
     handleSearch();
   }
 });
+
+// Load recent searches on page load
+renderRecentSearches();

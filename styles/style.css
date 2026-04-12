@@ -462,6 +462,29 @@ footer .modified {
     font-weight: 600;
 }
 
+.recent-searches {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.recent-searches button {
+    background: var(--secondary);
+    border: 1px solid var(--primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.recent-searches button:hover {
+    transform: scale(1.05);
+    background-color: var(--primary);
+    color: white;
+}
+
 .hidden {
     display: none;
 }

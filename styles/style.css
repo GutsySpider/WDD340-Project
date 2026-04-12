@@ -1,6 +1,6 @@
-/* ===========================
+/* 
    GLOBAL THEME
-=========================== */
+ */
 
 :root {
     --primary: #283A2C;
@@ -19,9 +19,9 @@ body {
     line-height: 1.6;
 }
 
-/* ===========================
+/* 
    HEADER
-=========================== */
+ */
 
 header {
     background-color: var(--primary);
@@ -38,7 +38,9 @@ header {
     margin: 0 auto;
 }
 
-/* Logo */
+/*
+ Logo 
+ */
 .logo {
     display: flex;
     align-items: center;
@@ -57,7 +59,9 @@ header {
     text-decoration: none;
 }
 
-/* Desktop Navigation */
+/*
+ Desktop Navigation 
+ */
 .top-nav {
     display: none;
     gap: 1.5rem;
@@ -74,7 +78,9 @@ header {
     opacity: 0.7;
 }
 
-/* Mobile Menu Button */
+/*
+ Mobile Menu Button 
+ */
 #menu-toggle {
     background: none;
     border: none;
@@ -87,7 +93,9 @@ header {
     height: 28px;
 }
 
-/* Mobile Navigation */
+/*
+ Mobile Navigation 
+ */
 .mobile-nav {
     position: absolute;
     top: 70px;
@@ -115,9 +123,9 @@ header {
     display: none;
 }
 
-/* ===========================
+/* 
    HERO SECTION
-=========================== */
+ */
 
 .hero {
     background-color: var(--secondary);
@@ -125,9 +133,9 @@ header {
     text-align: center;
 }
 
-/* ===========================
+/* 
    VACATION ADS
-=========================== */
+ */
 
 .vacation-ads {
     display: grid;
@@ -211,9 +219,9 @@ header {
     text-align: left;
 }
 
-/* ===========================
+/* 
    FOOTER
-=========================== */
+ */
 
 footer {
     background-color: var(--primary);
@@ -238,9 +246,9 @@ footer .modified {
     color: var(--secondary);
 }
 
-/* ===========================
-   ANIMATIONS
-=========================== */
+/* 
+   ANIMATION Home Page
+ */
 
 @keyframes fadeIn {
     from {
@@ -264,4 +272,110 @@ footer .modified {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/*
+ FLEX WRAPPER FOR MAP + LIST 
+ */
+#poi-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 600px;
+    margin-top: 20px;
+}
+
+/*
+ SCROLLABLE LIST 
+ */
+#poi-list {
+    width: 300px;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+    border-right: 2px solid #ccc;
+    background: #f9f9f9;
+}
+
+.poi-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.poi-item:hover {
+    background: #e8f4ff;
+}
+
+.poi-item.active {
+    background: #cce7ff;
+    border-left: 4px solid #0077ff;
+}
+
+/*
+ MAP TAKES REMAINING SPACE 
+ */
+#map {
+    flex: 1;
+    height: 100%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.currency-section {
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.currency-select {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.currency-select select,
+.currency-select button {
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--primary);
+}
+
+.currency-select button {
+    background: var(--primary);
+    color: var(--white);
+    cursor: pointer;
+}
+
+#converter input {
+    padding: 0.6rem;
+    width: 200px;
+    border-radius: 6px;
+    border: 1px solid var(--primary);
+}
+
+.result {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
 }

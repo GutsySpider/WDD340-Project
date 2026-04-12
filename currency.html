@@ -20,12 +20,45 @@
     <header id="main-header"></header>
 
     <main>
-        <!-- HERO SECTION -->
+        
         <section class="hero">
             <div class="hero-content">
                 <div class="logo-circle"><img src="./public/images/currency.png" alt="currency logo" /></div>
                 <h1>What you need!</h1>
         
+        <section class="currency-section">
+            <h2>Currency Conversion</h2>
+        
+            <div class="currency-select">
+                <div>
+                    <label for="from-country">You are from:</label>
+                    <select id="from-country"></select>
+                </div>
+        
+                <div>
+                    <label for="to-country">Traveling to:</label>
+                    <select id="to-country"></select>
+                </div>
+        
+                <button id="find-rate-btn">Find Conversion Rate</button>
+            </div>
+        
+            <div id="rate-display" class="hidden">
+                <h3>Exchange Rate</h3>
+                <p><span id="from-symbol"></span> → <span id="to-symbol"></span></p>
+                <p id="rate-value"></p>
+            </div>
+        
+            <div id="converter" class="hidden">
+                <h3>Convert Amount</h3>
+                <input type="number" id="amount-input" placeholder="Enter amount..." />
+                <p class="result">
+                    Converted: <span id="converted-amount"></span>
+                </p>
+            </div>
+        </section>
+        
+        <script src="./js/currency.js" type="module"></script>
     </main>
 
     <footer id="main-footer"></footer>

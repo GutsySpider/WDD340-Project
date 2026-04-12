@@ -1,45 +1,13 @@
-export const vacationAds = [
-  {
-    title: "Beach Escape",
-    description: "Relax on sunny shores with crystal clear water.",
-    location: "Bali, Indonesia",
-    image: "./public/images/bali_beach.webp", 
-    pointsOfInterest: [
-      "Waterbom Bali",
-      "Sacred Monkey Forest Sanctuary",
-      "Tegalalang Rice Terrace",
-      "Tanah Lot Temple",
-      "Kelingking Beach"
-    ]
-  },
-  {
-    title: "Mountain Adventure",
-    description: "Hike breathtaking trails and enjoy fresh air.",
-    location: "Swiss Alps",
-    image: "./public/images/alps.webp", 
-    pointsOfInterest: [
-      "The Matterhorn",
-      "Bernina Express",
-      "Gornergrat",
-      "Jungfraujoch – Top of Europe",
-      "Aletsch Glacier"
-    ]
-  },
-  {
-    title: "City Lights",
-    description: "Explore culture, food, and nightlife in a vibrant city.",
-    location: "Tokyo, Japan",
-    image: "./public/images/tokyo.webp", 
-    pointsOfInterest: [
-      "Senso-ji Temple",
-      "Tokyo Tower",
-      "Meiji Jingu Shrine",
-      "Shibuya Crossing",
-      "Ueno Park"
-    ]
-  }
-];
+// Load ads from JSON file
+export async function loadVacationAds() {
+  const response = await fetch("./data/vacationAds.json");
+  if (!response.ok) throw new Error("Failed to load vacation ads JSON");
 
+  const data = await response.json();
+  return data.vacationAds;
+}
+
+// Render ads into container
 export function renderVacationAds(ads, container) {
   container.innerHTML = "";
 

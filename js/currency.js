@@ -3,14 +3,14 @@ import { loadHeaderFooter } from "./utils.mjs";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  // Ensure header/footer are loaded BEFORE querying DOM
+ 
   await loadHeaderFooter();
 
-  // Dropdown elements
+  
   const fromSelect = document.getElementById("from-country");
   const toSelect = document.getElementById("to-country");
 
-  // Supported currencies
+  
   const countries = {
     "United States (USD)": "USD",
     "European Union (EUR)": "EUR",
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     toSelect.add(new Option(label, code));
   });
 
-  // UI elements
   const findRateBtn = document.getElementById("find-rate-btn");
   const rateDisplay = document.getElementById("rate-display");
   const fromSymbol = document.getElementById("from-symbol");
@@ -76,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
- // Auto-update conversion
+ 
 amountInput.addEventListener("input", () => {
   if (!currentRate) return;
 
